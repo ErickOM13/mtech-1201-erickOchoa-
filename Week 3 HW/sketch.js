@@ -1,3 +1,8 @@
+// Erick Ochoa Meza
+// I use copilot for the heart
+// i really like the finish result.
+
+
 let col, col1, col2;
 
 
@@ -5,7 +10,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background('white');
   //noStroke()
-  strokeWeight(10)
+  strokeWeight(50)
   //noFill()
   //noCursor()
   
@@ -17,6 +22,13 @@ function setup() {
 
 }
 
+function drawHeart(x, y, size) {
+  beginShape();
+  vertex(x, y);
+  bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
+  bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
+  endShape(CLOSE);
+}
   
 
 function draw() {
@@ -41,17 +53,11 @@ function draw() {
   //stroke(col);
   //line(pmouseX, pmouseY, mouseX, mouseY)
   rect(0,mouseY,width,10)
-  filter(BLUR,0.01)
+  filter(BLUR,3)
 
   fill('red');
-  noStroke()
-  //ellipse(width/2,height/2,80)
-  triangle(width/2,height/2,width/2-200,height/2,width/2,height/2-200);
-  //  triangle(300,300,100,300,300,500);
-  //  triangle(300,300,500,300,300,100);
-  // triangle(300,300,500,300,300,500);
-
-
+  noStroke();
+  drawHeart(width / 2, height / 2.5, 200);
 
   //fill(col)
   //ellipse(mouseX,mouseY, 150)
