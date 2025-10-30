@@ -7,14 +7,14 @@ let obstacleXLocs = []
 let obstacleYLocs = []
 let obstacleDs = []
 
-let numObstacles = 1
+let numObstacles = 5
 let crossedObstacle = false;
 let pCrossedObstacle = false; 
 
 let count = 0;
 
 let g
-
+let r;
 function preload(){
   snake = loadImage("snake.png")
   print(snake);
@@ -25,22 +25,59 @@ function preload(){
 function setup(){
   createCanvas(windowWidth,windowHeight);
   
+  r =round(random(0,5))
   noFill()
   stroke(random(255), 0, random(255))
-  
+  strokeWeight(4) 
   g = createGraphics(width, height);
   g.background(255,100,0)
 
   for(let i = 0; i<numObstacles; i++){
-    obstacleXLocs[i] = random(width,width/1.2)
-    obstacleYLocs[i] = random(height, height/1.2)
-    obstacleDs[i] = (50,50)
-  }
+   
+    obstacleXLocs[i] = random(width/10,width)
+    obstacleYLocs[i] = random(height, height/10)
+    obstacleDs[i] = (50)
+    }
+    
+    
+    
+  
 
   print(obstacleXLocs)
 
-  xLoc = width/22
-  yLoc = height/22
+  xLoc = width/3
+  yLoc = height/2
+  rotation =180
+  for(let i = 1; i<numObstacles; i++){
+   
+    obstacleXLocs[i] = random(500,500)
+    obstacleYLocs[i] = random(height, height/10)
+    obstacleDs[i] = (50)
+    }
+  for(let i = 2; i<numObstacles; i++){
+   
+    obstacleXLocs[i] = random(width,width/10)
+    obstacleYLocs[i] = random(height, height/10)
+    obstacleDs[i] = (50)
+    }
+    
+    
+    
+  
+
+  print(obstacleXLocs)
+
+  xLoc = width/3
+  yLoc = height/2
+  rotation =180
+    
+    
+  
+
+  print(obstacleXLocs)
+
+  xLoc = width/3
+  yLoc = height/2
   rotation =180
 
 }
@@ -64,7 +101,7 @@ for(let i = 0; i<numObstacles; i++){
    textSize(30)
    fill(255 ,100,100)
    image(g,0,0)
-   text("NEXT LEVEL", width/2, height/2)
+   text("WRONG", width/2, height/2)
    noFill()
    
 
@@ -78,13 +115,13 @@ for(let i = 0; i<numObstacles; i++){
  }
  
 
- if(count>5){
+ if(count==r){
    imageMode(CORNER);
-   textSize(80)
+   textSize(50)
    fill(0,255,100)
    image(g,0,0)
-   text("NEXT LEVEL", width/2, 100)
-  noLoop()
+   text("YOU WON", width/3, height/2)
+    noLoop()
  }
 
 
@@ -103,7 +140,7 @@ function obstacle(x, y, d){
 
   if(dist(xLoc,yLoc, x,y) < d/2){
     crossedObstacle = true;  
-    // background(255,100,0)
+      
  }
  
 
@@ -147,14 +184,14 @@ function moveSnake(){
 }
 function displaySnake(x, y, r){
 
-  imageMode(CENTER,CENTER,CENTER/2);
+  imageMode(CENTER);
 
-  // pass the x, y coordinates and the rotation in the argument
+ 
   push()
   translate(x, y);
   rotate(+r)
   print(snake.width)
-  image(snake,0 ,0, snake.width/6, snake.height/6  )
+  image(snake,-100 ,0, snake.width/6, snake.height/6  )
   pop()
   
 }
